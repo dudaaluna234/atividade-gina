@@ -1,0 +1,61 @@
+
+import java.util.Scanner;
+
+public class Questao1 {
+    public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
+
+        int[] numeros = new int[10];
+        int soma = 0;
+        int maior;
+
+        // Leitura dos números
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print("Digite o " + (i + 1) + " numero: ");
+            numeros[i] = entrada.nextInt();
+            soma += numeros[i];
+        }
+
+        // Exibição na ordem inversa
+        System.out.println("\nNumeros na ordem inversa:");
+        for (int i = numeros.length - 1; i >= 0; i--) {
+            System.out.println(numeros[i]);
+        }
+
+        // Cálculo da média
+        double media = (double) soma / numeros.length;
+
+        System.out.println("\nMedia: " + media);
+
+        // Contagem dos números maiores que a média
+        int contador = 0;
+
+        for (int i = 0; i < numeros.length; i++) {
+            if (numeros[i] > media) {
+                contador++;
+            }
+        }
+
+        System.out.println("Numeros maiores que a media: " + contador);
+
+        // Identificação do maior valor
+        maior = numeros[0];
+
+        for (int i = 1; i < numeros.length; i++) {
+            if (numeros[i] > maior) {
+                maior = numeros[i];
+            }
+        }
+
+        System.out.println("Maior valor: " + maior);
+        System.out.print("Indices onde aparece: ");
+
+        for (int i = 0; i < numeros.length; i++) {
+            if (numeros[i] == maior) {
+                System.out.print(i + " ");
+            }
+        }
+
+        entrada.close();
+    }
+}

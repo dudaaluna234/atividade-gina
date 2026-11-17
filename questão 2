@@ -1,0 +1,75 @@
+
+import java.util.Scanner;
+
+public class Questao2 {
+    public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
+
+        String[] nomes = new String[6];
+        int[] quantidades = new int[6];
+
+        // Cadastro dos produtos
+        for (int i = 0; i < nomes.length; i++) {
+            System.out.print("Nome do produto: ");
+            nomes[i] = entrada.nextLine();
+
+            System.out.print("Quantidade: ");
+            quantidades[i] = entrada.nextInt();
+
+            while (quantidades[i] < 0) {
+                System.out.print("Quantidade invalida. Digite novamente: ");
+                quantidades[i] = entrada.nextInt();
+            }
+
+            entrada.nextLine();
+        }
+
+        // Busca do produto
+        System.out.print("\nDigite o nome do produto para venda: ");
+        String busca = entrada.nextLine();
+
+        int posicao = -1;
+
+        for (int i = 0; i < nomes.length; i++) {
+            if (nomes[i].equalsIgnoreCase(busca)) {
+                posicao = i;
+                break;
+            }
+        }
+
+        // Verificação e realização da venda
+        if (posicao == -1) {
+            System.out.println("Produto nao encontrado.");
+        } else {
+            System.out.print("Quantidade para venda: ");
+            int venda = entrada.nextInt();
+
+            while (venda <= 0) {
+                System.out.print("Digite uma quantidade positiva: ");
+                venda = entrada.nextInt();
+            }
+
+            if (quantidades[posicao] >= venda) {
+                quantidades[posicao] -= venda;
+                System.out.println("Venda realizada com sucesso!");
+            } else {
+                System.out.println("Estoque insuficiente.");
+            }
+        }
+
+        // Exibição do estoque atualizado
+        System.out.println("\nESTOQUE ATUALIZADO");
+
+        for (int i = 0; i < nomes.length; i++) {
+            System.out.print(nomes[i] + " - Quantidade: " + quantidades[i]);
+
+            if (quantidades[i] < 5) {
+                System.out.print(" - ESTOQUE BAIXO!");
+            }
+
+            System.out.println();
+        }
+
+        entrada.close();
+    }
+}

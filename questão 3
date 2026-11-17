@@ -1,0 +1,69 @@
+
+import java.util.Scanner;
+
+public class Questao3 {
+    public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
+
+        double[] precos = new double[8];
+        int quantidade = 8;
+
+        // Leitura dos preços
+        for (int i = 0; i < precos.length; i++) {
+            System.out.print("Digite o preco " + (i + 1) + ": ");
+            precos[i] = entrada.nextDouble();
+
+            while (precos[i] <= 0) {
+                System.out.print("Preco deve ser maior que zero: ");
+                precos[i] = entrada.nextDouble();
+            }
+        }
+
+        // Cálculo do total e da média inicial
+        double total = 0;
+
+        for (int i = 0; i < quantidade; i++) {
+            total += precos[i];
+        }
+
+        System.out.println("\nTotal inicial: R$ " + total);
+        System.out.println("Media inicial: R$ " + (total / quantidade));
+
+        // Solicitação do índice para remoção
+        System.out.print("\nDigite o indice do preco que deseja remover (0 a 7): ");
+        int indice = entrada.nextInt();
+
+        while (indice < 0 || indice >= quantidade) {
+            System.out.print("Indice invalido. Digite novamente: ");
+            indice = entrada.nextInt();
+        }
+
+        // Deslocamento dos elementos
+        for (int i = indice; i < quantidade - 1; i++) {
+            precos[i] = precos[i + 1];
+        }
+
+        // Atualização da quantidade
+        quantidade--;
+
+        // Limpeza da posição liberada
+        precos[quantidade] = 0.0;
+
+        // Exibição dos preços válidos
+        System.out.println("\nPrecos apos a remocao:");
+
+        total = 0;
+
+        for (int i = 0; i < quantidade; i++) {
+            System.out.println("Indice " + i + ": R$ " + precos[i]);
+            total += precos[i];
+        }
+
+        // Novo total e média
+        System.out.println("\nNovo total: R$ " + total);
+        System.out.println("Nova media: R$ " + (total / quantidade));
+
+        entrada.close();
+    }
+}
+
